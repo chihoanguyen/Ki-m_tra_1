@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    td{
+        width: 200px;
+        height: 30px;
+    }
+</style>
+<body>
+<button onclick="addCustomer()">Thêm khách hàng</button>
+<table id="list" border="1px"></table>
+<script>
+    let Customers= [];
+    function displayCustomer() {
+        let str = '';
+        for (let i = 0; i < Customers.length; i++) {
+            str +='<tr>' +
+                '<td>'+Customers[i]+'</td>' +
+                '<td><button onclick="deleteCustomer('+ i +')">Xóa</button></td>' +
+                '<td><button onclick="updateCustomer('+ i +')">Sửa</button></td>' +
+                '</tr>';
+        }
+        document.getElementById('list').innerHTML = str;
+    }
+    displayCustomer();
+    function addCustomer() {
+        let a= prompt("Nhập mã khách hàng");
+        let b= prompt("Họ và tên");
+        let c= prompt("Ngày sinh");
+        let d= prompt("Giới tính");
+        let e= prompt("Địa chỉ");
+        Customers.push(a,b,c,d,e);
+        displayCustomer();
+    }
+    function updateCustomer(index) {
+        Customers[index] = prompt("Nhập tên mới", Customers[index]);
+        displayCustomer();
+    }
+        function deleteCustomer(index) {
+            let check = confirm("Bạn có muốn xóa khách hàng này không");
+            if (check) {
+                Customers.splice(index, 1);
+                displayCustomer();
+            } else {
+                alert("Thôi không xóa nữa");
+            }
+        }
+</script>
+</body>
+</html>
